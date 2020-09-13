@@ -1,0 +1,238 @@
+#1
+select model, speed, hd 
+from pc
+where price < 500;
+
+#2
+select distinct maker
+from product
+where type = 'printer';
+
+#3
+select model, ram, screen
+from laptop
+where price > 1000;
+
+#4
+select *
+from printer
+where color = 'y';
+
+#5
+select model, speed, hd
+from pc
+where (cd = '12x' or cd = '24x') and price < 600;
+
+#6
+select distinct maker, speed
+from product join laptop
+on product.model = laptop.model
+where laptop.hd >= 10;
+
+#7
+select laptop.model, price
+from product join laptop
+on product.model = laptop.model
+where maker = 'B'
+union
+select printer.model, price
+from product join printer
+on product.model = printer.model
+where maker = 'B'
+union
+select pc.model, price
+from product join pc
+on product.model = pc.model
+where maker = 'B';
+
+#8
+select maker
+from product
+where type in ('laptop', 'pc')
+except
+select maker
+from product
+where type = 'laptop';
+
+#9
+select distinct maker
+from product join pc
+on product.model = pc.model
+where speed >= 450;
+
+#10
+select model, price
+from printer
+where price = (select max(price) from printer)
+
+#11
+select avg(speed) from pc
+
+#12
+select avg(speed)
+from laptop
+where price > 1000
+
+#13
+select avg(speed)
+from pc join product
+on pc.model = product.model
+where maker = 'A'
+
+#14
+select ships.class, name, country
+from classes join ships
+on classes.class = ships.class
+where numguns >= 10
+
+#15
+select hd
+from pc
+group by hd
+having count(hd) >= 2
+
+#16
+select distinct pc1.model, pc2.model, pc1.speed, pc1.ram
+from pc as pc1, pc as pc2
+where pc1.model > pc2.model and pc1.speed = pc2.speed and pc1.ram = pc2.ram
+
+#17
+select distinct type, laptop.model, speed
+from laptop join product
+on laptop.model = product.model
+where speed < (select min(speed) from pc)
+
+#18
+select distinct maker, price
+from product join printer
+on product.model = printer.model
+where price = (select min(price) from printer where color = 'y') and color = 'y'
+
+#19
+select maker, avg(screen)
+from laptop join product
+on laptop.model = product.model
+group by maker
+
+#20
+select maker, count(model)
+from product
+where type = 'pc'
+group by maker
+having count(model) >= 3
+
+#21
+select maker, max(price)
+from pc join product
+on pc.model = product.model
+group by maker
+
+#22
+select speed, avg(price)
+from pc
+where speed > 600
+group by speed
+
+#23
+select maker
+from product join pc
+on pc.model = product.model
+where speed >= 750
+intersect
+select maker
+from product join laptop
+on laptop.model = product.model
+where speed >= 750
+
+#24
+with x(model, price) as (select model, price from pc union
+      select model, price from laptop union
+      select model, price from printer)
+select model
+from x
+where price = (select max(price) from x)
+
+#?25
+select maker
+from product join pc
+on product.model = pc.model
+where maker in(select maker from product join pc on product.model = pc.model where ram = (select min(ram) from pc where speed = (select max(speed) from pc))) and maker in(select maker from product where type = 'printer')
+
+#26
+
+#27
+select maker, avg(hd)
+from pc join product
+on pc.model = product.model
+where maker in(select maker from product where type = 'printer')
+group by maker
+
+#28
+
+#29
+
+#30
+
+#31
+select class, country
+from classes
+where bore >= 16
+
+#32
+
+#33
+select ship
+from outcomes
+where result = 'sunk' and battle = 'North Atlantic'
+
+#34
+
+#35
+
+#36
+
+#37
+
+#38
+select country
+from classes
+where type = 'bb'
+intersect
+select country
+from classes
+where type = 'bc'
+
+#?39
+select ship
+from outcomes join battles
+on battle = name
+where exist()
+
+#40
+
+#41
+
+#42
+select ship, battle
+from outcomes
+where result = 'sunk'
+
+#43
+
+#44
+select name
+from ships
+where name like 'r%'
+union
+select ship
+from outcomes
+where ship like 'r%'
+
+#45
+select name
+from ships
+where name like '% % %'
+union
+select ship
+from outcomes
+where ship like '% % %'
