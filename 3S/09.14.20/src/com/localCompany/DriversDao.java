@@ -31,27 +31,30 @@ public class DriversDao {
 
         while(resultSet.next()) {
             if(resultSet.getLong("id") == id) {
-                List<Car> cars = findCarsByDriversId(id);
-                return Optional.of(new Driver(resultSet.getLong("id"),
-                                                resultSet.getString("firs_name"),
-                                                resultSet.getString("second_name"),
-                                                resultSet.getInt("age"), cars));
+                /*List<Car> cars = findCarsByDriversId(id);*/
+                Driver dr = new Driver(resultSet.getLong("id"),
+                        resultSet.getString("first_name"),
+                        resultSet.getString("last_name"),
+                        resultSet.getInt("age"), new LinkedList<Car>());
+                List<Car> cars = findCarsByDriver(dr);
+                dr.setCars(cars);
+                return Optional.of(dr);
             }
         }
         return null;
     }
 
-    private List<Car> findCarsByDriversId(Long driver_id) throws SQLException{
+    private List<Car> findCarsByDriver(Driver dr) throws SQLException{
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("SELECT * FROM car");
         List<Car> cars = new LinkedList<>();
 
         while(resultSet.next()) {
-            if(resultSet.getLong("driver_id") == driver_id) {
+            if(resultSet.getLong("driver_id") == dr.getId()) {
                 cars.add(new Car(resultSet.getLong("id"),
                                     resultSet.getString("model"),
                                     resultSet.getString("color"),
-                                    resultSet.getLong("driver_id")));
+                                    dr));
             }
         }
         return cars;

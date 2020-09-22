@@ -12,13 +12,23 @@ public class Car {
     private String model;
     private String color;
 
-    public Car(Long id, String model, String color, Long driver_id) {
+    public Car(Long id, String model, String color, Driver driver) {
         this.id = id;
         this.model = model;
         this.color = color;
-        this.driver_id = driver_id;
+        this.driver = driver;
     }
 
     // TODO: на интерес
-    private Long driver_id;
+    private Driver driver;
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", color='" + color + '\'' +
+                ", driver=" + driver +
+                '}';
+    }
 }

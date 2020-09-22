@@ -27,4 +27,22 @@ public class Driver {
     public List<Car> getCars() {
         return cars;
     }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Driver{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }

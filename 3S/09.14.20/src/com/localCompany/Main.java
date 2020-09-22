@@ -11,6 +11,7 @@ public class Main {
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/postgres";
 
     public static void main(String[] args) throws Exception {
+        Class.forName("org.postgresql.Driver");
         Connection connection =
                 DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 
@@ -48,7 +49,7 @@ public class Main {
 //        System.out.println("Было добавлено " + affectedRows + " строк");
 //
         DriversDao driversDao = new DriversDao(connection);
-        Optional<Driver> driver = driversDao.findById(1L);
+        Optional<Driver> driver = driversDao.findById(2L);
 
         if (driver.isPresent()) {
             System.out.println(driver.get().getCars());
