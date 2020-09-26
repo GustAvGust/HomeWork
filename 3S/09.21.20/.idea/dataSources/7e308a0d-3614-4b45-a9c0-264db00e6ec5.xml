@@ -257,10 +257,10 @@ false Antarctica/Davis
 false Antarctica/DumontDUrville
 false Antarctica/Macquarie
 false Antarctica/Mawson
-false Antarctica/McMurdo
+true Antarctica/McMurdo
 false Antarctica/Palmer
 false Antarctica/Rothera
-false Antarctica/South_Pole
+true Antarctica/South_Pole
 false Antarctica/Syowa
 true Antarctica/Troll
 false Antarctica/Vostok
@@ -649,8 +649,8 @@ false NOVT
 false NPT
 false NST
 false NUT
-false NZ
-false NZ-CHAT
+true NZ
+true NZ-CHAT
 true NZDT
 false NZST
 false NZT
@@ -675,10 +675,10 @@ true PST8PDT
 false PWT
 true PYST
 false PYT
-false Pacific/Apia
-false Pacific/Auckland
+true Pacific/Apia
+true Pacific/Auckland
 false Pacific/Bougainville
-false Pacific/Chatham
+true Pacific/Chatham
 false Pacific/Chuuk
 true Pacific/Easter
 false Pacific/Efate
@@ -790,7 +790,7 @@ true posixrules
     <database id="2" parent="1" name="database_users">
       <ObjectId>16422</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>519</IntrospectionStateNumber>
+      <IntrospectionStateNumber>550</IntrospectionStateNumber>
       <Relations>sequence|table|16429|16423|3
 </Relations>
     </database>
@@ -854,7 +854,7 @@ sequence|table|16414|16416|1
       <Comment>standard public schema</Comment>
       <StateNumber>276</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>520</IntrospectionStateNumber>
+      <IntrospectionStateNumber>551</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="16" parent="2" name="heap">
@@ -1027,7 +1027,7 @@ sequence|table|16414|16416|1
     <table id="45" parent="15" name="registrated_user">
       <ObjectId>16423</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>514</StateNumber>
+      <StateNumber>549</StateNumber>
     </table>
     <sequence id="46" parent="30" name="car_id_seq">
       <ObjectId>16401</ObjectId>
@@ -1062,10 +1062,10 @@ sequence|table|16414|16416|1
       <Owner>postgres</Owner>
       <StateNumber>499</StateNumber>
     </table>
-    <column id="52" parent="45" name="name">
+    <column id="52" parent="45" name="first_name">
       <Position>1</Position>
       <DataType>varchar|0s</DataType>
-      <StateNumber>510</StateNumber>
+      <StateNumber>534</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="53" parent="45" name="password">
@@ -1082,7 +1082,19 @@ sequence|table|16414|16416|1
       <DefaultExpression>nextval(&apos;registrated_user_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>20</TypeId>
     </column>
-    <column id="55" parent="49" name="id">
+    <column id="55" parent="45" name="last_name">
+      <Position>4</Position>
+      <DataType>text|0s</DataType>
+      <StateNumber>535</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="56" parent="45" name="age">
+      <Position>5</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>549</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="57" parent="49" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
@@ -1090,39 +1102,39 @@ sequence|table|16414|16416|1
       <DefaultExpression>nextval(&apos;car_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>20</TypeId>
     </column>
-    <column id="56" parent="49" name="model">
+    <column id="58" parent="49" name="model">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <StateNumber>494</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="57" parent="49" name="color">
+    <column id="59" parent="49" name="color">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <StateNumber>494</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="58" parent="49" name="driver_id">
+    <column id="60" parent="49" name="driver_id">
       <Position>4</Position>
       <DataType>bigint|0s</DataType>
       <StateNumber>494</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <index id="59" parent="49" name="car_pkey">
+    <index id="61" parent="49" name="car_pkey">
       <ObjectId>16407</ObjectId>
       <StateNumber>494</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="60" parent="49" name="car_pkey">
+    <key id="62" parent="49" name="car_pkey">
       <ObjectId>16408</ObjectId>
       <StateNumber>494</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>car_pkey</UnderlyingIndexName>
     </key>
-    <foreign-key id="61" parent="49" name="car_driver_id_fkey">
+    <foreign-key id="63" parent="49" name="car_driver_id_fkey">
       <ObjectId>16409</ObjectId>
       <StateNumber>494</StateNumber>
       <ColNames>driver_id</ColNames>
@@ -1132,7 +1144,7 @@ sequence|table|16414|16416|1
       <RefKeyName>driver_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="62" parent="50" name="id">
+    <column id="64" parent="50" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
@@ -1140,39 +1152,39 @@ sequence|table|16414|16416|1
       <DefaultExpression>nextval(&apos;driver_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>20</TypeId>
     </column>
-    <column id="63" parent="50" name="first_name">
+    <column id="65" parent="50" name="first_name">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <StateNumber>492</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="64" parent="50" name="last_name">
+    <column id="66" parent="50" name="last_name">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <StateNumber>492</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="65" parent="50" name="age">
+    <column id="67" parent="50" name="age">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>492</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="66" parent="50" name="driver_pkey">
+    <index id="68" parent="50" name="driver_pkey">
       <ObjectId>16399</ObjectId>
       <StateNumber>492</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="67" parent="50" name="driver_pkey">
+    <key id="69" parent="50" name="driver_pkey">
       <ObjectId>16400</ObjectId>
       <StateNumber>492</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>driver_pkey</UnderlyingIndexName>
     </key>
-    <column id="68" parent="51" name="id">
+    <column id="70" parent="51" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1180,26 +1192,26 @@ sequence|table|16414|16416|1
       <DefaultExpression>nextval(&apos;manufacture_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="69" parent="51" name="name">
+    <column id="71" parent="51" name="name">
       <Position>2</Position>
       <DataType>varchar(10)|0s</DataType>
       <StateNumber>499</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="70" parent="51" name="place">
+    <column id="72" parent="51" name="place">
       <Position>3</Position>
       <DataType>varchar(10)|0s</DataType>
       <StateNumber>499</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="71" parent="51" name="manufacture_pkey">
+    <index id="73" parent="51" name="manufacture_pkey">
       <ObjectId>16420</ObjectId>
       <StateNumber>499</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="72" parent="51" name="manufacture_pkey">
+    <key id="74" parent="51" name="manufacture_pkey">
       <ObjectId>16421</ObjectId>
       <StateNumber>499</StateNumber>
       <ColNames>id</ColNames>

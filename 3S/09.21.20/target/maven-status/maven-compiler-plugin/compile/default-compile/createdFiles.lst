@@ -1,1 +1,3 @@
+ru\itis\entities\User.class
 ru\itis\servlet\SimpHtmlServlet.class
+ru\itis\servlet\UsersServlet.class
