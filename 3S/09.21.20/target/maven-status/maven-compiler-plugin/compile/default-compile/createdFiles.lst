@@ -1,3 +1,11 @@
-ru\itis\entities\User.class
-ru\itis\servlet\SimpHtmlServlet.class
+ru\itis\servlet\ProfileServlet.class
 ru\itis\servlet\UsersServlet.class
+ru\itis\servlet\SignInServlet.class
+ru\itis\entities\User.class
+ru\itis\repositories\RowMapper.class
+ru\itis\repositories\UsersRepository.class
+ru\itis\repositories\SimpleJdbcTemplate.class
+ru\itis\repositories\UsersRepositoryJdbcImpl.class
+ru\itis\servlet\RegistrationServlet.class
+ru\itis\entities\User$UserBuilder.class
+ru\itis\repositories\CrudRepository.class
