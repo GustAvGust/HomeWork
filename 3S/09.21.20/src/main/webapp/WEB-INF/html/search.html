@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Search</title>
     <script
             src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
@@ -42,9 +42,19 @@
     </script>
 
     <div>
-        <input id="search_prefix" name="search_prefix" type="text">
-        <button onclick="showFindUsers($('#search_prefix').val())">Search</button>
+        <input id="search_prefix" type="text"> <span id="result"></span>
+<!--        <button onclick="showFindUsers($('#search_prefix').val())">Search</button>-->
+        <script> search_prefix.oninput = function () {
+                                showFindUsers($('#search_prefix').val());
+                };
+
+        //для того, чтобы в самом начале при нажатии на пустую поисковую строку, отобразились все пользователи
+                search_prefix.onclick = function () {
+                    showFindUsers($('#search_prefix').val());
+                };
+        </script>
     </div>
+
     <div>
         <table id="table">
 
