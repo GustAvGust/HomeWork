@@ -3,6 +3,8 @@ package ru.itis.repositories;
 import ru.itis.entities.User;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -120,5 +122,16 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         //language=SQL
         final String SQL_FIND_BY_LOGIN_PASSWORD = "select * from registrated_user where login = ? and password = ?";
         return jdbcTemplate.queryForList(SQL_FIND_BY_LOGIN_PASSWORD, usersRowMapper, login, password).get(0);
+    }
+
+    public Collection<? extends User> findUsersByPrefixOfFirstName(String prefixOfFirstName) {
+        List<User> users = this.findAll();
+        List<User> usersWithPrefOfName = new ArrayList<>();
+        for (User user : users) {
+            if (user.getFirstName().toLowerCase().startsWith(prefixOfFirstName.toLowerCase())) {
+                usersWithPrefOfName.add(user);
+            }
+        }
+        return usersWithPrefOfName;
     }
 }

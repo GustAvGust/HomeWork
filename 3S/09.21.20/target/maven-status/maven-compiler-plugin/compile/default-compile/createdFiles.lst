@@ -7,5 +7,6 @@ ru\itis\repositories\UsersRepository.class
 ru\itis\repositories\SimpleJdbcTemplate.class
 ru\itis\repositories\UsersRepositoryJdbcImpl.class
 ru\itis\servlet\RegistrationServlet.class
+ru\itis\servlet\LiveSearchServlet.class
 ru\itis\entities\User$UserBuilder.class
 ru\itis\repositories\CrudRepository.class
