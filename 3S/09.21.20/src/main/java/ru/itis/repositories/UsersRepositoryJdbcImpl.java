@@ -125,13 +125,15 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     }
 
     public Collection<? extends User> findUsersByPrefixOfFirstName(String prefixOfFirstName) {
-        List<User> users = this.findAll();
+        /*List<User> users = this.findAll();
         List<User> usersWithPrefOfName = new ArrayList<>();
         for (User user : users) {
             if (user.getFirstName().toLowerCase().startsWith(prefixOfFirstName.toLowerCase())) {
                 usersWithPrefOfName.add(user);
             }
-        }
-        return usersWithPrefOfName;
+        }*/
+        //language=SQL
+        final String SQL_FIND_WITH_PREFIX = "select * from registrated_user where lower(substring(first_name from 1 for ?)) like lower(?)";
+        return jdbcTemplate.queryForList(SQL_FIND_WITH_PREFIX, usersRowMapper, prefixOfFirstName.length(), prefixOfFirstName);
     }
 }
